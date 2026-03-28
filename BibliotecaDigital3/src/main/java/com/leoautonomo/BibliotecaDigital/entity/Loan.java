@@ -1,5 +1,6 @@
 package com.leoautonomo.BibliotecaDigital.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.leoautonomo.BibliotecaDigital.entity.enums.LoanStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,10 +22,12 @@ public class Loan {
     private UUID id;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;
 

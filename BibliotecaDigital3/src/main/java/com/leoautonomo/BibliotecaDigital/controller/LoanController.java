@@ -12,6 +12,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/loans")
 @RequiredArgsConstructor
@@ -44,5 +45,10 @@ public class LoanController {
     @GetMapping("/{id}")
     public ResponseEntity<LoanResponseDTO> findById(@PathVariable UUID id) {
         return ResponseEntity.ok(loanService.findById(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteLoanById(@PathVariable UUID id) {
+        loanService.deleteLoan(id);
     }
 }

@@ -18,7 +18,8 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/book")  // ← MUDEI PARA "/Books" (mais comum que "/biblioteca")
+@RequestMapping("/books")  // ← MUDEI PARA "/Books" (mais comum que "/biblioteca")
+@CrossOrigin(origins = "http://localhost:5173")
 public class BookController {
 
     @Autowired

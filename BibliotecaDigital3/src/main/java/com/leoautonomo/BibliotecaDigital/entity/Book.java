@@ -27,6 +27,7 @@ public class Book {
     private String isbn;
     private Integer publicationYear;
     private Boolean available;
+    @JsonIgnore
     @OneToMany(mappedBy = "book")
     private List<Loan> loans = new ArrayList<>();
 }

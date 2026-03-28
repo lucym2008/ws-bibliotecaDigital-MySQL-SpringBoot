@@ -1,0 +1,86 @@
+.loan-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.loan-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.loan-card-content {
+    padding: 20px;
+}
+
+.loan-book-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.loan-book-author {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.loan-dates {
+    margin: 12px 0;
+    padding: 12px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.loan-dates p {
+    margin: 6px 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.loan-status {
+    margin: 16px 0;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.status-badge.active {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-badge.overdue {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.status-badge.returned {
+    background-color: #e2e3e5;
+    color: #383d41;
+}
+
+.btn-return {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-return:hover {
+    background-color: #218838;
+}
