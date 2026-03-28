@@ -1,6 +1,5 @@
 package com.leoautonomo.BibliotecaDigital.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.leoautonomo.BibliotecaDigital.entity.enums.LoanStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,44 +9,41 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tb_loan")
-@EqualsAndHashCode(of = "id")
-@Data
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Loan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    // ← ADICIONE ESTE RELACIONAMENTO
     @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    // ← ADICIONE ESTE RELACIONAMENTO
-    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "book_id", nullable = false)
     private Book book;
 
+    @Column(nullable = false)
     private LocalDate loanDate;
+
     private LocalDate returnDate;
 
     @Enumerated(EnumType.ORDINAL)
     private LoanStatus status;
 
-    @Override
-    public String toString() {
-        return "Loan{" +
-                "id=" + id +
-                ", loanDate=" + loanDate +
-                ", returnDate=" + returnDate +
-                ", status=" + status +
-                '}';
+    // Calcula data de devolução prevista (7 dias após empréstimo)
+    public LocalDate getDueDate() {
+        return loanDate != null ? loanDate.plusDays(7) : null;
     }
 
+    // Verifica se está atrasado
+    public boolean isOverdue() {
+        if (status != LoanStatus.ACTIVE) return false;
+        return LocalDate.now().isAfter(getDueDate());
+    }
 }
