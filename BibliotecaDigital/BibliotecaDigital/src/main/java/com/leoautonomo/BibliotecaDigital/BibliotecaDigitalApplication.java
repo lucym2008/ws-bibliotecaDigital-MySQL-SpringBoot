@@ -1,7 +1,5 @@
 package com.leoautonomo.BibliotecaDigital;
 
-package com.leoautonomo.BibliotecaDigital;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -11,4 +9,5 @@ public class BibliotecaDigitalApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BibliotecaDigitalApplication.class, args);
 	}
+
 }
