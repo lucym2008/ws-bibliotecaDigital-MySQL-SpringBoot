@@ -1,10 +1,13 @@
 package com.leoautonomo.BibliotecaDigital.controller;
 
-import com.leoautonomo.BibliotecaDigital.controller.DTO.User.Request.UserCreateDTO;
-import com.leoautonomo.BibliotecaDigital.controller.DTO.User.Request.UserUpdateDTO;
-import com.leoautonomo.BibliotecaDigital.controller.DTO.User.Response.UserResponseDTO;
-import com.leoautonomo.BibliotecaDigital.entity.User;
-import com.leoautonomo.BibliotecaDigital.service.UserService;
+import com.leoautonomo.BibliotecaDigital.controller.DTO.Book.Request.BookCreateDTO;
+import com.leoautonomo.BibliotecaDigital.controller.DTO.Book.Response.BookResponseDTO;
+import com.leoautonomo.BibliotecaDigital.controller.DTO.Book.Request.BookUpdateDTO;
+import com.leoautonomo.BibliotecaDigital.controller.DTO.Book.Response.BookResponseDTO;
+import com.leoautonomo.BibliotecaDigital.entity.Book;
+import com.leoautonomo.BibliotecaDigital.entity.Book;
+
+import com.leoautonomo.BibliotecaDigital.service.BookService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,43 +18,45 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/users")  // ← MUDEI PARA "/users" (mais comum que "/biblioteca")
+@RequestMapping("/book")  // ← MUDEI PARA "/Books" (mais comum que "/biblioteca")
 public class BookController {
 
     @Autowired
-    private UserService userService;
+    private BookService bookService;
 
     @PostMapping
-    public ResponseEntity<UserResponseDTO> createUser(@Valid @RequestBody UserCreateDTO requestDTO) {
-        User user = requestDTO.toEntity();
-        User saved = userService.createUser(user);
-        UserResponseDTO response = UserResponseDTO.fromEntity(saved);
-        return ResponseEntity.created(URI.create("/users/" + response.id())).body(response);
+    public ResponseEntity<BookResponseDTO> createBook(@Valid @RequestBody BookCreateDTO requestDTO) {
+        Book book = requestDTO.toEntity();
+        Book saved = bookService.createBook(book);
+        BookResponseDTO response = BookResponseDTO.fromEntity(saved);
+        return ResponseEntity.created(URI.create("/book/" + response.id())).body(response);
     }
 
+    
     @GetMapping
-    public ResponseEntity<List<UserResponseDTO>> listUsers() {
-        List<UserResponseDTO> list = userService.listUsers();
+    public ResponseEntity<List<BookResponseDTO>> listBooks() {
+        List<BookResponseDTO> list = bookService.listBooks();
         return ResponseEntity.ok(list);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponseDTO> findUserById(@PathVariable String id) {
-        UserResponseDTO user = userService.findUserByIdOrThrow(UUID.fromString(id));
-        return ResponseEntity.ok(user);
+    public ResponseEntity<BookResponseDTO> findBookById(@PathVariable String id) {
+        Book book = bookService.findBookEntityById(UUID.fromString(id));
+        var bookFound = BookResponseDTO.fromEntity(book);
+        return ResponseEntity.ok(bookFound);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable String id) {
-        userService.deleteById(UUID.fromString(id));
+        bookService.deleteById(UUID.fromString(id));
         return ResponseEntity.noContent().build();  // ← Retorna 204 No Content
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponseDTO> updateById(
+    public ResponseEntity<BookResponseDTO> updateById(
             @PathVariable String id,
-            @Valid @RequestBody UserUpdateDTO updateDTO) {  // ← ESSENCIAL!
-        UserResponseDTO updated = userService.updateUserById(UUID.fromString(id), updateDTO);
+            @Valid @RequestBody BookUpdateDTO updateDTO) {  // ← ESSENCIAL!
+        BookResponseDTO updated = bookService.updateBookById(UUID.fromString(id), updateDTO);
         return ResponseEntity.ok(updated);
     }
 }

@@ -1,5 +1,6 @@
 package com.leoautonomo.BibliotecaDigital.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.leoautonomo.BibliotecaDigital.entity.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -33,6 +34,7 @@ public class User {
     private LocalDateTime CreatedAt;
     private LocalDateTime UpdatedAt;
     // ✅ Deixe apenas o relacionamento
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Loan> loans = new ArrayList<>();
 

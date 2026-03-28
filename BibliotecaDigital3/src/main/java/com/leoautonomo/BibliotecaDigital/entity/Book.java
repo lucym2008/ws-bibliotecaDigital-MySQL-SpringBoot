@@ -1,5 +1,6 @@
 package com.leoautonomo.BibliotecaDigital.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 

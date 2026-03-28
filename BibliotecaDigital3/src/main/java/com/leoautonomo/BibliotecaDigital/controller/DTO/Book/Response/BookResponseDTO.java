@@ -1,6 +1,9 @@
 package com.leoautonomo.BibliotecaDigital.controller.DTO.Book.Response;
 
 import com.leoautonomo.BibliotecaDigital.entity.Book;
+import com.leoautonomo.BibliotecaDigital.entity.Loan;
+
+import java.util.List;
 import java.util.UUID;
 
 public record BookResponseDTO(
@@ -10,7 +13,7 @@ public record BookResponseDTO(
         String isbn,
         Integer publicationYear,
         Boolean available,
-        Integer totalLoans  // Quantidade de empréstimos
+        List<Loan> Loans  // Quantidade de empréstimos
 ) {
     public static BookResponseDTO fromEntity(Book book) {
         return new BookResponseDTO(
@@ -20,7 +23,7 @@ public record BookResponseDTO(
                 book.getIsbn(),
                 book.getPublicationYear(),
                 book.getAvailable(),
-                book.ge
+                book.getLoans()
         );
     }
 }

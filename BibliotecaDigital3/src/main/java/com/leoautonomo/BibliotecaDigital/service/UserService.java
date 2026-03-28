@@ -3,7 +3,7 @@ package com.leoautonomo.BibliotecaDigital.service;
 import com.leoautonomo.BibliotecaDigital.controller.DTO.User.Request.UserUpdateDTO;
 import com.leoautonomo.BibliotecaDigital.controller.DTO.User.Response.UserResponseDTO;
 import com.leoautonomo.BibliotecaDigital.entity.User;
-import com.leoautonomo.BibliotecaDigital.exceptions.UserNotFoundException;
+import com.leoautonomo.BibliotecaDigital.exceptions.NotFoundException;
 import com.leoautonomo.BibliotecaDigital.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class UserService {
 
     public User findUserEntityById(UUID id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(id));
+                .orElseThrow(() -> new NotFoundException(id));
     }
 
     public UserResponseDTO findUserByIdOrThrow(UUID id) {
