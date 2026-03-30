@@ -1,0 +1,68 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Fundo geral */
+body {
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+/* Container central */
+.container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background: #1e293b;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Títulos */
+h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Inputs */
+.input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #334155;
+  color: white;
+  font-size: 14px;
+}
+
+/* Botão */
+.button {
+  width: 100%;
+  padding: 12px;
+  background: #3b82f6;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.button:hover {
+  background: #2563eb;
+}
+
+/* Link */
+.link {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  color: #60a5fa;
+  cursor: pointer;
+}

@@ -33,6 +33,17 @@ public class UserService {
         return UserResponseDTO.fromEntity(user);
     }
 
+    public User login(String email, String password) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        if (!user.getPassword().equals(password)) {
+            throw new RuntimeException("Senha inválida");
+        }
+
+        return user;
+    }
+
     @Transactional
     public List<UserResponseDTO> listUsers() {
         return userRepository.findAll()

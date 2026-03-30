@@ -1,5 +1,6 @@
 package com.leoautonomo.BibliotecaDigital.controller;
 
+import com.leoautonomo.BibliotecaDigital.controller.DTO.User.Request.LoginDTO;
 import com.leoautonomo.BibliotecaDigital.controller.DTO.User.Request.UserCreateDTO;
 import com.leoautonomo.BibliotecaDigital.controller.DTO.User.Request.UserUpdateDTO;
 import com.leoautonomo.BibliotecaDigital.controller.DTO.User.Response.UserResponseDTO;
@@ -28,6 +29,12 @@ public class UserController {
         User saved = userService.createUser(user);
         UserResponseDTO response = UserResponseDTO.fromEntity(saved);
         return ResponseEntity.created(URI.create("/users/" + response.id())).body(response);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserResponseDTO> login(@RequestBody LoginDTO data) {
+        User user = userService.login(data.email(), data.password());
+        return ResponseEntity.ok(UserResponseDTO.fromEntity(user));
     }
 
     @GetMapping
